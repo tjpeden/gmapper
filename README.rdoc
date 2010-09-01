@@ -1,0 +1,50 @@
+= GMapper
+
+A version agnostic library for the Google Maps API.
+
+Currently only supports Google Static Maps.
+
+
+== Install
+
+  gem install gmapper
+
+
+== Dependancies
+
+  active_support/inflector
+
+
+== Usage
+
+To create a map of a location, say the Googleplex:
+
+  map = Google::Maps::Static::Map.new :center => [37.422, 122.084]
+
+Then, lets say we want to add a marker to point out where it is:
+
+  map.markers << Google::Maps::Static::Marker.new [37.422, 122.084], :color => :blue, :label => 'G'
+
+
+== Lisence
+
+Copyright (c) 2010 TJ Peden
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+ 
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+ 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
