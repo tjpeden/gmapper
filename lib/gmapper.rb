@@ -1,4 +1,5 @@
 require 'uri'
+require 'cgi'
 require 'net/http'
 require 'google/autoload'
 
@@ -10,6 +11,12 @@ unless [].respond_to? :extract_options!
   end
 end
 
+module GMapper
+  
+  autoload :Error, 'exceptions'
+  
+end
+
 module Google
   
   module Maps
@@ -18,7 +25,7 @@ module Google
       extend Google::Autoload
       
       autoload :Map
-      autoload :Marker
+      autoload :Markers
       
     end # => Static
     

@@ -5,8 +5,6 @@ module Google
     module Static
       
       class Map
-        attr_reader :markers
-        
         def initialize *args
           @base = "http://maps.google.com/maps/api/staticmap"
           
@@ -17,10 +15,18 @@ module Google
           }
           @options.merge! args.extract_options!
           
-          raise "Must specify the center location." unless @options.key? :center
-          
           @markers = []
         end
+        
+        def []= key, value
+          @options[key] = value
+        end
+        
+        def << markers
+          raise GMapper::Error, "This method only accepts Markers objects" unless markers.is_a?(Markers)
+          @markers << markers
+        end
+        alias_method :add_markers, :<<
         
         def save file
           response = ::Net::HTTP.get( ::URI.parse( url ) )
@@ -28,6 +34,7 @@ module Google
         end
         
         def url
+          raise GMapper::Error, "Must specify the center location." unless @options.key? :center
           @url ||= "#{@base}?#{parameters}"
         end
         alias_method :to_s, :url
@@ -43,7 +50,7 @@ module Google
               else object.to_s
               end
               
-              "#{::URI.escape( key.to_s )}=#{::URI.escape( value )}"
+              "#{::CGI.escape( key.to_s )}=#{::CGI.escape( value )}"
             end.join('&')
             
             result += '&' + @markers.map(&:to_s).join('&') unless @markers.empty?

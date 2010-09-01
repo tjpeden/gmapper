@@ -32,8 +32,7 @@ To save the map to your local disk:
 
 == Todo
 
-* I still need to add some tests
-* There are a few other API's that I have to refactor before I add
+* There are a few other classes that I have to refactor before I add
 
 
 == Lisence
