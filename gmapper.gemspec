@@ -6,11 +6,11 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["TJ Peden"]
-  s.date = %q{2010-08-31}
+  s.date = %q{2010-09-01}
   s.description = %q{A version agnostic library for the Google Maps API.}
   s.email = %q{tj.peden@tj-coding.com}
   s.extra_rdoc_files = ["README.rdoc", "lib/gmapper.rb", "lib/google/autoload.rb", "lib/google/maps/static/map.rb", "lib/google/maps/static/marker.rb"]
-  s.files = ["README.rdoc", "Rakefile", "lib/gmapper.rb", "lib/google/autoload.rb", "lib/google/maps/static/map.rb", "lib/google/maps/static/marker.rb", "Manifest", "gmapper.gemspec"]
+  s.files = ["README.rdoc", "Rakefile", "gmapper.gemspec", "lib/gmapper.rb", "lib/google/autoload.rb", "lib/google/maps/static/map.rb", "lib/google/maps/static/marker.rb", "Manifest"]
   s.homepage = %q{http://github.com/tpeden/gmapper}
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Gmapper", "--main", "README.rdoc"]
   s.require_paths = ["lib"]

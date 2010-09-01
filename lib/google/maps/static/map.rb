@@ -10,8 +10,14 @@ module Google
         def initialize *args
           @base = "http://maps.google.com/maps/api/staticmap"
           
-          @options = args.extract_options!
-          @options[:sensor] = false unless @options.key?(:sensor)
+          @options = {
+            :zoom   => 12,
+            :size   => [400, 400],
+            :sensor => false
+          }
+          @options.merge! args.extract_options!
+          
+          raise "Must specify the center location." unless @options.key? :center
           
           @markers = []
         end

@@ -22,7 +22,7 @@ module Google
           end
           
           result += @locations.map do |loc|
-            loc.is_a?(Array) ? log.join(',') : loc.to_s
+            loc.is_a?(Array) ? loc.join(',') : loc.to_s
           end.join('|')
           
           ::URI.encode( result )
