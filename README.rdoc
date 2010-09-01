@@ -25,10 +25,20 @@ Then, lets say we want to add a marker to point out where it is:
 
   map.markers << Google::Maps::Static::Marker.new [37.422, 122.084], :color => :blue, :label => 'G'
 
+To save the map to your local disk:
+
+  map.save "googleplex.jpg"
+
+
+== Todo
+
+I still need to add some tests
+There are a few other API's that I have to refactor before I add
+
 
 == Lisence
 
-Copyright (c) 2010 TJ Peden
+Copyright (c) 2010 TJ-Coding.com
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
