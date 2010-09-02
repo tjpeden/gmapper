@@ -15,27 +15,38 @@ module Google
           }
           @options.merge! args.extract_options!
           
-          @markers = []
+          @items = args.select { |item| item.is_a?(Items::Base) }.map(&:to_s)
         end
         
         def []= key, value
           @options[key] = value
         end
         
-        def << markers
-          raise GMapper::Error, "This method only accepts Markers objects" unless markers.is_a?(Markers)
-          @markers << markers
+        def << item
+          raise GMapper::Error, "Please only use Items::Base decendants." unless item.is_a?(Items::Base)
+          @items << item.to_s
         end
-        alias_method :add_markers, :<<
+        alias_method :add_item, :<<
         
         def save file
-          response = ::Net::HTTP.get( ::URI.parse( url ) )
+          response = ::Net::HTTP.get( ::URI.parse( url.urlencode ) )
           File.open( file, 'wb' ) { |f| f.write response }
         end
         
         def url
           raise GMapper::Error, "Must specify the center location." unless @options.key? :center
-          @url ||= "#{@base}?#{parameters}"
+          
+          if @url.nil?
+            url = "#{@base}?#{parameters}"
+            
+            def url.urlencode
+              gsub(/\|/, '%7C')
+            end
+            
+            @url = url
+          end
+          
+          @url
         end
         alias_method :to_s, :url
         
@@ -50,10 +61,12 @@ module Google
               else object.to_s
               end
               
-              "#{::CGI.escape( key.to_s )}=#{::CGI.escape( value )}"
+              "#{key.to_s}=#{value}"
             end.join('&')
             
-            result += '&' + @markers.map(&:to_s).join('&') unless @markers.empty?
+            result += '&' + @items.join('&') unless @items.empty?
+            
+            result.gsub!(/\s/, '+')
             
             result
           end

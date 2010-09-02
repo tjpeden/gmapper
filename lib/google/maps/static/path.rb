@@ -4,11 +4,11 @@ module Google
     
     module Static
       
-      class Markers < Items::Base
+      class Path < Items::Base
         
         def initialize *args
           super
-          @item = 'markers'
+          @item = 'path'
         end
         
       end # => Google::Maps::Static::Marker

@@ -1,6 +1,6 @@
 = GMapper
 
-A version agnostic library for the Google Maps API.
+A (mostly) version agnostic Ruby library for the Google Maps API.
 
 Currently only supports Google Static Maps.
 
@@ -8,11 +8,6 @@ Currently only supports Google Static Maps.
 == Install
 
   gem install gmapper
-
-
-== Dependancies
-
-  active_support/inflector
 
 
 == Usage
@@ -23,7 +18,7 @@ To create a map of a location, say the Googleplex:
 
 Then, lets say we want to add a marker to point out where it is:
 
-  map.markers << Google::Maps::Static::Marker.new [37.422, 122.084], :color => :blue, :label => 'G'
+  map << Google::Maps::Static::Marker.new([37.422, 122.084], :color => :blue, :label => 'G')
 
 To save the map to your local disk:
 

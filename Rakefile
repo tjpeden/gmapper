@@ -16,14 +16,14 @@ end
 Spec::Rake::SpecTask.new(:html) do |t|
   t.warning = true
   t.spec_files = FileList['spec/**/*_spec.rb']
-  t.spec_opts = %w(--format html:doc/reports/tools/failing_examples.html --diff)
+  t.spec_opts = %w(--format html:doc/reports/tools/failing_examples.html)
   t.fail_on_error = false
 end
 
 Spec::Rake::SpecTask.new(:nested) do |t|
   # t.warning = true
   t.spec_files = FileList['spec/**/*_spec.rb']
-  t.spec_opts = %w{--backtrace --format nested --diff --color}
+  t.spec_opts = %w{--backtrace --format nested --color}
   t.fail_on_error = false
 end
 
