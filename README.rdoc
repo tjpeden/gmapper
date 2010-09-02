@@ -18,7 +18,7 @@ To create a map of a location, say the Googleplex:
 
 Then, lets say we want to add a marker to point out where it is:
 
-  map << Google::Maps::Static::Marker.new([37.422, 122.084], :color => :blue, :label => 'G')
+  map << Google::Maps::Static::Markers.new([37.422, 122.084], :color => :blue, :label => 'G')
 
 To save the map to your local disk:
 
