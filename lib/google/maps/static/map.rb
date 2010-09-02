@@ -48,7 +48,7 @@ module Google
             url = "#{@base}?#{parameters}"
             
             def url._encode
-              gsub(/\|/, '%7C')
+              gsub(/\|/) { |match| '%' + match.unpack('H2').join.upcase }
             end
             
             @url = url
@@ -75,6 +75,7 @@ module Google
             result += '&' + @items.join('&') unless @items.empty?
             
             result.gsub!(/\s/, '+')
+            result.gsub!(/(?<=\+)&(?=\+)/) { |match| '%' + match.unpack('H2').join.upcase }
             
             result
           end
