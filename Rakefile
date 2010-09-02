@@ -4,11 +4,16 @@ require 'rake/rdoctask'
 require 'echoe'
 require 'spec/rake/spectask'
 
-Echoe.new( 'gmapper', '0.1.0' ) do |p|
-  p.description     = "A version agnostic library for the Google Maps API."
-  p.url             = "http://github.com/tpeden/gmapper"
+Echoe.new( 'gmapper', '0.2.0' ) do |p|
   p.author          = "TJ Peden"
   p.email           = "tj.peden@tj-coding.com"
+  p.summary         = "A version agnostic, dependency free Ruby library for the Google Maps API."
+  p.description     = <<-EOS
+A (mostly) version agnostic, dependency free Ruby library for the Google Maps API.
+
+Currently only supports Google Static Maps.
+EOS
+  p.url             = "http://github.com/tpeden/gmapper"
   p.ignore_pattern  = ["tmp/*", "script/*"]
   p.development_dependencies = []
 end

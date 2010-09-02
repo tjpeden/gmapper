@@ -4,7 +4,7 @@ module Google
     
     module Static
       
-      class Path < Items::Base; end
+      class Visible < Items::Base; end
       
     end # => Google::Maps::Static
     

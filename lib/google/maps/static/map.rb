@@ -9,7 +9,7 @@ module Google
           @base = "http://maps.google.com/maps/api/staticmap"
           
           @options = {
-            :zoom   => 12,
+            # :zoom   => 12,
             :size   => [400, 400],
             :sensor => false
           }
@@ -20,26 +20,34 @@ module Google
         
         def []= key, value
           @options[key] = value
+          @url = nil if @url # Object has become dirty, url should be regenerated
         end
         
         def << item
           raise GMapper::Error, "Please only use Items::Base decendants." unless item.is_a?(Items::Base)
           @items << item.to_s
+          @url = nil if @url # Object has become dirty, url should be regenerated
         end
         alias_method :add_item, :<<
         
         def save file
-          response = ::Net::HTTP.get( ::URI.parse( url.urlencode ) )
+          response = ::Net::HTTP.get( ::URI.parse( url._encode ) )
           File.open( file, 'wb' ) { |f| f.write response }
         end
         
         def url
-          raise GMapper::Error, "Must specify the center location." unless @options.key? :center
+          unless @options.key?(:center) || !@items.empty?
+            raise GMapper::Error, "Must specify the center location unless you add one or more map items."
+          end
+          
+          unless @options.key?(:zoom) || !@items.empty?
+            raise GMapper::Error, "Must specify the zoom level unless you add one or more map items."
+          end
           
           if @url.nil?
             url = "#{@base}?#{parameters}"
             
-            def url.urlencode
+            def url._encode
               gsub(/\|/, '%7C')
             end
             

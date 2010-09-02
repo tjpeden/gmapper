@@ -1,5 +1,5 @@
 Spec::Matchers.define :orderlessly_match do |original_string|
-  regex = /[\?&]|%7C/
+  regex = /[\?\|&]/
   match do |given_string|
     original_string.split(regex).sort == given_string.split(regex).sort
   end

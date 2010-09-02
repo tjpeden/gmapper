@@ -1,6 +1,6 @@
 = GMapper
 
-A (mostly) version agnostic Ruby library for the Google Maps API.
+A (mostly) version agnostic, dependency free Ruby library for the Google Maps API.
 
 Currently only supports Google Static Maps.
 

@@ -1,5 +1,4 @@
 require 'uri'
-require 'cgi'
 require 'net/http'
 require 'autoload'
 require 'exceptions'
@@ -22,6 +21,7 @@ module Google
       autoload :Map
       autoload :Markers
       autoload :Path
+      autoload :Visible
       
       module Items
         extend GMapper::Autoload # Again?
