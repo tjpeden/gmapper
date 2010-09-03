@@ -74,10 +74,9 @@ module Google
             
             result += '&' + @items.join('&') unless @items.empty?
             
-            result.gsub!(/\s/, '+')
-            result.gsub!(/(?<=\+)&(?=\+)/) { |match| '%' + match.unpack('H2').join.upcase }
+            result.gsub!(' ', '+')
             
-            result
+            result.split(/&(?=[a-z]+=)/).map { |param| param.gsub('&', '%26') }.join('&')
           end
       end # => Google::Maps::Static::Map
       
