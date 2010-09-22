@@ -1,3 +1,5 @@
+# All map items have the same format 
+
 module Google
   
   module Maps

@@ -5,6 +5,8 @@ module Google
     module Static
       
       class Map
+        attr_accessor :timeout
+        
         def initialize *args
           @base = "http://maps.google.com/maps/api/staticmap"
           
@@ -31,8 +33,12 @@ module Google
         alias_method :add_item, :<<
         
         def save file
-          response = ::Net::HTTP.get( ::URI.parse( url._encode ) )
-          File.open( file, 'wb' ) { |f| f.write response }
+          uri = ::URI.parse( url._encode )
+          http = ::Net::HTTP.new( uri.host, uri.port )
+          http.read_timeout = @timeout if @timeout
+          
+          response = http.get( "#{uri.path}?#{uri.query}" )
+          File.open( file, 'wb' ) { |f| f.write response.body }
         end
         
         def url

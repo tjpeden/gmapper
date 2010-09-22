@@ -4,7 +4,7 @@ require 'rake/rdoctask'
 require 'echoe'
 require 'spec/rake/spectask'
 
-Echoe.new( 'gmapper', '0.2.0' ) do |p|
+Echoe.new( 'gmapper', '0.2.1' ) do |p|
   p.author          = "TJ Peden"
   p.email           = "tj.peden@tj-coding.com"
   p.summary         = "A version agnostic, dependency free Ruby library for the Google Maps API."
